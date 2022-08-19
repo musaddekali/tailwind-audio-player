@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <div class="root container mx-auto px-3">
+    <!-- Header  -->
+    <header class="sticky top-0 bg-white z-7">
+      <h1 class="text-3xl font-bold text-center capitalize mb-8">Learn <span
+          class="text-blue-500 dark:text-white">tailwind css</span>
+      </h1>
+      <nav class="md:flex md:items-center md:justify-between  border-b border-b-gray-300">
+        <div class="flex justify-between">
+          <a class="text-xl font-bold text-gray-600" href="#"><span>Mahid</span></a>
+          <button id="toggle-menu"
+            class="inline-block md:hidden ml-auto p-2 rounded bg-sky-500 text-white hover:bg-sky-600">Menu</button>
+        </div>
+        <ul id="navmenu-nav" class="mt-2 hidden md:flex">
+          <li><a class="px-3 py-2 rounded hover:bg-sky-300 transition mb-2 block text-center" href="#">Home</a></li>
+          <li><a class="px-3 py-2 rounded hover:bg-sky-300 transition mb-2 block text-center" href="#">About</a></li>
+          <li><a class="px-3 py-2 rounded hover:bg-sky-300 transition mb-2 block text-center" href="#">Work</a></li>
+          <li><a class="px-3 py-2 rounded hover:bg-sky-300 transition mb-2 block text-center" href="#">Services</a></li>
+          <li><a class="px-3 py-2 rounded hover:bg-sky-300 transition mb-2 block text-center" href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header> <!-- end header -->
+
+    <!-- Audio Player Section  -->
+    <section class="audio-player py-12 select-none">
+      <!-- main  -->
+      <div class="w-80 border shadow rounded-lg overflow-hidden">
+        <!-- img  -->
+        <img class="w-full h-44 mb-8 object-cover" src="./img.jpg" alt="player">
+        <!-- title  -->
+        <p class="text-sm mb-3 text-slate-500 text-center">
+          Delki karar aya tum se hain...
+        </p>
+        <div class="p-4 pb-8">
+          <!-- player btns  -->
+          <div class="grid grid-flow-col justify-center gap-4 place-items-center">
+            <!-- preview  -->
+            <button type="button"
+              class="w-12 h-12 grid place-items-center bg-sky-100 hover:bg-sky-200 transition rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+                <path
+                  d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+              </svg>
+            </button>
+            <!-- play  -->
+            <button type="button" id="play-btn"
+              class="w-12 h-12 grid place-items-center bg-sky-100 hover:bg-sky-200 transition rounded-full">
+              <!-- play icon -->
+
+              <!-- pause icon -->
+
+            </button>
+            <!-- forward  -->
+            <button type="button"
+              class="w-12 h-12 grid place-items-center bg-sky-100 hover:bg-sky-200 transition rounded-full">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                class="bi bi-caret-right-fill" viewBox="0 0 16 16">
+                <path
+                  d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+              </svg>
+            </button>
+          </div>
+          <!-- player progress  -->
+          <div>
+            <span class="text-xs mb-0.5">3.40s</span>
+            <div class="h-3 rounded-full bg-sky-200">
+              <div class="h-3 w-3/4 bg-sky-600 rounded-full">
+              </div>
+            </div>
+          </div>
+        </div>
+    </section> <!-- End Player -->
+
+  </div>
+  <!-- End Root  -->
+
+  <script>
+    const toggleMenuBtn = document.getElementById('toggle-menu');
+    const menuContent = document.getElementById('navmenu-nav');
+    const playIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z" />
+                     </svg>`;
+    const pauseIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                      class="bi bi-pause-fill" viewBox="0 0 16 16">
+                      <path
+                        d="M5.5 3.5A1.5 1.5 0 0 1 7 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5zm5 0A1.5 1.5 0 0 1 12 5v6a1.5 1.5 0 0 1-3 0V5a1.5 1.5 0 0 1 1.5-1.5z" />
+                      </svg>`;
+    const playBtn = document.getElementById('play-btn');
+
+    // control play and pause btn for audio player 
+    let play = false;
+    playBtn.addEventListener('click', function () {
+      if (!play) {
+        this.innerHTML = pauseIcon;
+        play = true;
+      } else {
+        this.innerHTML = playIcon;
+        play = false;
+      }
+    })
+    playBtn.innerHTML = playIcon;
+
+    // toggle navmenu 
+    document.addEventListener('click', (e) => {
+      let id = e.target.id;
+
+      if (id === 'toggle-menu') {
+        menuContent.classList.toggle('hidden');
+      } else {
+        menuContent.classList.add('hidden');
+      }
+
+      if (id === 'navmenu-nav') {
+        menuContent.classList.remove('hidden');
+      }
+
+    }) 
+  </script>
+</body>
+
+</html>
